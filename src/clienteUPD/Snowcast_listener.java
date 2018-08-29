@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,23 +38,27 @@ public class Snowcast_listener{
     
 
     //receptor
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JavaLayerException {
         try {
             
 
             int pacote = 50000;
-        
-            DatagramSocket receber = new DatagramSocket(12344);
-
+            InetAddress addr = InetAddress.getByName("192.168.0.255");
+            DatagramSocket receber = new DatagramSocket(12344,addr);
+            
+            
             byte[] myBuffer = new byte[pacote];
 
             DatagramPacket pkgRecebe = new DatagramPacket(myBuffer, myBuffer.length);
+          
+            
+           
             
             //new Player();
                 while(true){
                     receber.receive(pkgRecebe);
                 byte audio[] = pkgRecebe.getData();
-                
+                  //  System.out.write(audio);
                     Player toca= new Player ( new ByteArrayInputStream(audio));
                     toca.play();
                    
@@ -66,8 +71,6 @@ public class Snowcast_listener{
         } catch (SocketException ex) {
             Logger.getLogger(Snowcast_listener.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Snowcast_listener.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JavaLayerException ex) {
             Logger.getLogger(Snowcast_listener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
