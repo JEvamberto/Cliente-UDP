@@ -43,8 +43,8 @@ public class Snowcast_listener{
             
 
             int pacote = 50000;
-            InetAddress addr = InetAddress.getByName("192.168.0.255");
-            DatagramSocket receber = new DatagramSocket(12344,addr);
+           
+            DatagramSocket receber = new DatagramSocket(12344);
             
             
             byte[] myBuffer = new byte[pacote];
