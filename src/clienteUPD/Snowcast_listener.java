@@ -33,12 +33,22 @@ public class Snowcast_listener{
 
     //receptor
     public static void main(String[] args) throws JavaLayerException {
+        String portaUDP=null;
+        if (args.length==0) {
+            System.out.println("Digite um parametro válido : <nomeDoArquivo> <portaUDP>");
+        }else{
+            
+            portaUDP=args[0];
+        
+        }
+        
+        
         try {
             
 
             int pacote = 50000;
            
-            DatagramSocket receber = new DatagramSocket(12344);
+            DatagramSocket receber = new DatagramSocket(Integer.parseInt(portaUDP));
             
             
             byte[] myBuffer = new byte[pacote];
