@@ -23,19 +23,14 @@ import javazoom.jl.player.Player;
  */
 public class Snowcast_listener{
 
-    //Comando Hello
-    byte commandType = 0;
-    short updPort;
-    //SetStation
-    byte commandType1 = 1;
-    short stationNumber;
-    
+
 
     //receptor
     public static void main(String[] args) throws JavaLayerException {
         String portaUDP=null;
-        if (args.length==0) {
-            System.out.println("Digite um parametro válido : <nomeDoArquivo> <portaUDP>");
+        if (args.length==0 || args.length >= 2) {
+            System.out.println("Digite um parametro válido :  <portaUDP>");
+            System.exit(0);
         }else{
             
             portaUDP=args[0];
